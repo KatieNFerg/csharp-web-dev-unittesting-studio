@@ -23,21 +23,38 @@ namespace BalancedBracketsNS
          * parameter str - to be validated
          * returns true if balanced, false otherwise
         */
-        public static bool HasBalancedBrackets(String str)
+        public static bool HasBalancedBrackets(string str)
         {
+            
             int brackets = 0;
             foreach (char ch in str.ToCharArray())
             {
-                if (ch == '[')
+                
+                if (!str.Contains('['))
+                {
+                    return false;
+                }
+                else if (!str.Contains(']'))
+                {
+                    return false;
+                }
+                else if (ch == '[')
                 {
                     brackets++;
                 }
                 else if (ch == ']')
                 {
+                    if (brackets < 1)
+                    {
+                        return false;
+                    }
                     brackets--;
                 }
+                
             }
+            
             return brackets == 0;
         }
     }
 }
+
